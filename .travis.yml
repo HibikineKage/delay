@@ -11,6 +11,7 @@ before_deploy:
   - chmod 600 /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa
   - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDYeKqxFOy/3FhCEAMQlqxPW29TowulFhIrTn1L/ZAWPDNLq2ZgOdlu+BBohJqgz51yZMrRbX5511kLs5ml+KJeQPNrDlOQqLbyhea7tVVmO6+sBDcXfVhHSBhi1P1UoLO/B2jHmStBGB9c1I0qq4IpjION/xfSD+sopwRuzKESBvL5ZwTRdfo8RLw/shR5t2dXYJYAMR3Mqr7pubTzxIFYzmT1N7TxsQhPlUTSYZomALoYn5VHHMjHZ0F3xWK3USUB0X8LjOp8MGhGA7Bxe7vSHQcxWtotJJRSxscWxoFAZQV+dUQ/08ovUGjMdvhVu77ck/mf7BSXxjF723Sq0ywuV232QUREvPxx8v80iE3E9ExJ1vXYcxjtL7l1WTqdLE8xVfhWTNONeMye1EjuuzLKZzo+J4OOf+PA1O9Bt4SZ1Ssw6rSVBwXSpT9Q2n0eNzWXE0ffEVD8GmJ27MNCg2BBsw3yEVwWfM7nDrOaEYgjFxfrY+LqcF3TKJbwjpzhiFZy/j2H/0sSy08Rx3R9JmIOdtUtpZZYMZkoqSA8viUSU04vY6Cg9BMlwGULc7oTHXIHBeU4ot8bKu23mmuoGXuYGgzynyFoiUfZ0hJsTeVpeUaiY0e2EOIWcKygD3FkXZSrm905djxHsh5lveSh8LkYEMJ61iKDQginJMR4r1Q2dQ== goodsmile314159@gmail.com' >> $HOME/.ssh/known_hosts
+  - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 deploy:
   provider: script
   skip_cleanup: true
