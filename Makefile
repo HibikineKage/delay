@@ -8,6 +8,9 @@ LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(R
 bin/$(NAME): $(SRCS)
 	go build -a -tags netgo -installsuffix netgo $(LDFLAGS) -o bin/$(NAME)
 
+.PHONY: build-ci
+build-ci: cross-build
+
 .PHONY: install
 install:
 	go install $(LDFLAGS)
@@ -22,8 +25,8 @@ test:
 	go test
 
 .PHONY: cross-build
-cross-build: deps
-	for os in darwin linux windows; do \
+cross-build:
+	for os in darwin linux windows freebsd; do \
 		for arch in amd64 386; do \
 			GOOS=$$os GOARCH=$$arch CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo $(LDFLAGS) -o dist/$$os-$$arch/$(NAME); \
 		done; \
